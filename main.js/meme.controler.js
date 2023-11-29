@@ -11,7 +11,20 @@ function onInit() {
 
 function renderMeme(elImg) {
   gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height)
-  drawLineText("your text...", 225, 50)
+  // gCanvas.classList.remove("hidden")
+
+  // const elMemeEditor = document.querySelector(".MemeEditor")
+  // elMemeEditor.classList.remove("hidden")
+
+  const elMemeController = document.querySelector(".meme-controller")
+  elMemeController.classList.remove("hidden")
+
+  const elSectionImg = document.querySelector(".gallery .imges")
+  elSectionImg.classList.add("hidden")
+
+  const elGalleryNav = document.querySelector(".gallery-nav")
+  elGalleryNav.classList.add("hidden")
+  drawLineText("your text...", 350, 50)
 }
 
 function drawLineText(text, x, y) {

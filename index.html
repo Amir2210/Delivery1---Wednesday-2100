@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MemeGenerator</title>
     <link rel="stylesheet" href="styles/style.css" />
+    <script
+      src="https://kit.fontawesome.com/7f863f3dc8.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body class="main-layout" onload="onInit()">
-    <canvas class="" width="500" height="500"></canvas>
     <header class="main-header main-layout">
       <nav class="main-nav flex align-center space-between">
         <div class="logo">logo</div>
@@ -19,16 +22,38 @@
     </header>
     <main>
       <section class="gallery">
-        <nav class="gallery-nav"></nav>
+        <nav class="gallery-nav">
+          <ul class="main-nav-list clean-list flex space-between">
+            <li>
+              <input
+                type="text"
+                placeholder="search "
+                oninput="onSetFilterBy({text: this.value})"
+              />
+            </li>
+            <ul class="clean-list flex flex">
+              <li><a href="#funny">funny</a></li>
+              <li><a href="#animal">animal</a></li>
+              <li><a href="#men">men</a></li>
+              <li><a href="#women">women</a></li>
+              <li><a href="#comic">comic</a></li>
+              <li><a href="#smile">smile</a></li>
+            </ul>
+            <li><a href="more">more</a></li>
+          </ul>
+        </nav>
         <div class="imges"></div>
       </section>
-      <section class="editor"></section>
-      <section class="canvas-contaienr">
-        <!-- <canvas width="500" height="500"></canvas> -->
+
+      <section class="meme-controller meme-controller-layout hidden">
+        <section class="canvas-contaienr">
+          <canvas width="700" height="600"></canvas>
+        </section>
+        <section class="MemeEditor"></section>
       </section>
-      <script src="main.js/meme.controler.js"></script>
-      <script src="main.js/gallery.service.js"></script>
-      <script src="main.js/gallery.controler.js"></script>
     </main>
+    <script src="main.js/meme.controler.js"></script>
+    <script src="main.js/gallery.service.js"></script>
+    <script src="main.js/gallery.controler.js"></script>
   </body>
 </html>

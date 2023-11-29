@@ -1,0 +1,13 @@
+.meme-controller {
+  margin-block-start: 1em;
+}
+
+.meme-controller .canvas-contaienr {
+  grid-column: 2;
+}
+
+.meme-controller .MemeEditor {
+  grid-column: 4;
+  height: 600px;
+  background-color: aqua;
+}
