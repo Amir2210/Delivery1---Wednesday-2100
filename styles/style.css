@@ -11,6 +11,7 @@
 
 /* COMPONENTS */
 
-/* MQ */
+@import url("components/canvas.css");
 
+/* MQ */
 @import url("./setup/mq.css");
