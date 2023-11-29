@@ -51,12 +51,25 @@
           <canvas width="700" height="600"></canvas>
         </section>
         <section class="MemeEditor">
-          <input
-            class="firstTextIn"
-            type="text"
-            onchange1="changeText()"
-            placeholder="your text..."
-          />
+          <div class="textInput">
+            <input
+              class="firstTextIn"
+              type="text"
+              onchange1="changeText()"
+              placeholder="your text..."
+            />
+          </div>
+          <div class="downloadImg">
+            <a href="#" onclick="onDownloadCanvas(this)">Download</a>
+          </div>
+          <div class="form">
+            <form id="myForm" onchange=" changeColor()">
+              <label for="color">color</label>
+              <input type="color" name="color" id="color" value="#ffffff" />
+              <label for="color">Stroke Color</label>
+              <input type="color" name="StrokeColor" id="StrokeColor" />
+            </form>
+          </div>
         </section>
       </section>
     </main>
