@@ -6,14 +6,22 @@
     <title>MemeGenerator</title>
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <body>
+  <body onload="onInit()">
+    <h1>MemeGenerator</h1>
     <header>
       <nav class="main-nav"></nav>
     </header>
     <main>
-      <nav class="secondary-nav"></nav>
-      <section class="gallery"></section>
+      <section class="gallery">
+        <nav class="gallery-nav"></nav>
+        <div class="imges"></div>
+      </section>
       <section class="editor"></section>
+      <section class="canvas-contaienr">
+        <canvas width="500" height="500" onclick="onDraw(event)"></canvas>
+      </section>
+      <script src="main.js/gallery.service.js"></script>
+      <script src="main.js/gallery.controler.js"></script>
     </main>
   </body>
 </html>
