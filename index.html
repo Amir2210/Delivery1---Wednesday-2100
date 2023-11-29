@@ -10,10 +10,11 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body class="main-layout" onload="onInit()">
     <header class="main-header main-layout">
       <nav class="main-nav flex align-center space-between">
-        <div class="logo">logo</div>
+        <div class="logo">MemeGenrator</div>
         <ul class="main-nav-list clean-list flex">
           <li><button onclick="goGallery()">gallery</button></li>
           <li><a href="#about">about</a></li>
@@ -49,9 +50,17 @@
         <section class="canvas-contaienr">
           <canvas width="700" height="600"></canvas>
         </section>
-        <section class="MemeEditor"></section>
+        <section class="MemeEditor">
+          <input
+            class="firstTextIn"
+            type="text"
+            onchange1="changeText()"
+            placeholder="your text..."
+          />
+        </section>
       </section>
     </main>
+    <script src="main.js/meme.service.js"></script>
     <script src="main.js/meme.controler.js"></script>
     <script src="main.js/gallery.service.js"></script>
     <script src="main.js/gallery.controler.js"></script>

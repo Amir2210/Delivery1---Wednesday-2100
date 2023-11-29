@@ -1,11 +1,13 @@
 "use strict"
-
+const myInput = document.querySelector(".firstTextIn")
 let gCanvas
 let gCtx
+let firstText = "your text..."
 
 function onInit() {
   gCanvas = document.querySelector("canvas")
   gCtx = gCanvas.getContext("2d")
+
   renderImgs()
 }
 
@@ -21,10 +23,20 @@ function renderMeme(elImg) {
   const elGalleryNav = document.querySelector(".gallery-nav")
   elGalleryNav.classList.add("hidden")
 
-  drawLineText("your text...", 350, 50)
+  drawText(firstText, 350, 50)
+
+  //change the text every time the user press any letter on the keyboard
+  myInput.addEventListener("input", () => {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
+    gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height)
+    var inputValue = myInput.value
+    drawText(inputValue, 350, 50)
+    setLineTxt()
+  })
 }
 
-function drawLineText(text, x, y) {
+function drawText(text, x, y) {
+  // textCtx.clearRect(0, 0, textCanvas.width, textCanvas.height)
   gCtx.lineWidth = 3.5
   gCtx.strokeStyle = "#000"
   gCtx.fillStyle = "#fff"
@@ -33,6 +45,10 @@ function drawLineText(text, x, y) {
   gCtx.textBaseline = "middle"
   gCtx.fillText(text, x, y)
   gCtx.strokeText(text, x, y)
+}
+
+function getDrawText() {
+  return myInput.value
 }
 
 // function onDownloadCanvas(elLink) {
