@@ -6,11 +6,16 @@
     <title>MemeGenerator</title>
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <body onload="onInit()">
-    <canvas width="500" height="500"></canvas>
-    <h1>MemeGenerator</h1>
-    <header>
-      <nav class="main-nav"></nav>
+  <body class="main-layout" onload="onInit()">
+    <canvas class="" width="500" height="500"></canvas>
+    <header class="main-header main-layout">
+      <nav class="main-nav flex align-center space-between">
+        <div class="logo">logo</div>
+        <ul class="main-nav-list clean-list flex">
+          <li><a href="#gallery">gallery</a></li>
+          <li><a href="#about">about</a></li>
+        </ul>
+      </nav>
     </header>
     <main>
       <section class="gallery">

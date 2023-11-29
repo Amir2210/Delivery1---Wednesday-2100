@@ -1,0 +1,12 @@
+/* COLORS */
+
+:root {
+  --headerBackground: rgb(63, 94, 251);
+  --headerBackgroundGrad: linear-gradient(
+    90deg,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(85, 87, 255, 1) 0%,
+    rgba(70, 252, 122, 1) 100%
+  );
+  --bodyBackground: RGBA(34, 37, 44, 1);
+}

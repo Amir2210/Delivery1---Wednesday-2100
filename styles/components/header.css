@@ -1,0 +1,10 @@
+.main-header {
+  height: 80px;
+  margin-block-start: 1em;
+  background-color: var(--headerBackground);
+  background: var(--headerBackgroundGrad);
+}
+
+.main-header .logo {
+  font-size: 1.375em;
+}
