@@ -89,6 +89,22 @@ function drawText(text, x, y, lineIndex) {
 
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
+
+    if (lineIndex === getMeme().selectedLineIdx) {
+      const textWidth = gCtx.measureText(text).width
+      const textHeight = currentLine.size || 20
+      const framePadding = 10
+
+      gCtx.beginPath()
+      gCtx.rect(
+        x - textWidth / 2 - framePadding,
+        y - textHeight / 2 - framePadding,
+        textWidth + 2 * framePadding,
+        textHeight + 2 * framePadding
+      )
+      gCtx.strokeStyle = "#333" //
+      gCtx.stroke()
+    }
   }
 }
 
