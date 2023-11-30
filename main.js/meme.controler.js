@@ -4,12 +4,17 @@ let gCanvas
 let gCtx
 // let firstText = "your text..."
 let gFirstText = {
-  text: "your text..."
+  text: "your text...",
+  color: "white",
+  fontSize: 60
 }
+
+let gImg
 
 function changeColor() {
   gFirstText.color = document.getElementById("color").value
-  gFirstText.strokeColor = getElementById("StrokeColor").value
+  gFirstText.strokeColor = document.getElementById("StrokeColor").value
+  redrawImg()
 }
 
 function onInit() {
@@ -20,6 +25,7 @@ function onInit() {
 }
 
 function renderMeme(elImg) {
+  gImg = elImg
   gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height)
 
   const elMemeController = document.querySelector(".meme-controller")
@@ -33,22 +39,35 @@ function renderMeme(elImg) {
 
   drawText(gFirstText.text, 350, 50)
 
-  //change the text every time the user press any letter on the keyboard
   myInput.addEventListener("input", () => {
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
-    gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height)
-    var inputValue = myInput.value
-    drawText(inputValue, 350, 50)
-    setLineTxt()
+    redrawImg()
   })
 }
 
+function increaseFont(fontSize) {
+  gFirstText.fontSize += fontSize
+  redrawImg()
+}
+
+function decreaseFont(fontSize) {
+  gFirstText.fontSize -= fontSize
+  redrawImg()
+}
+
+function redrawImg() {
+  gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
+  gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height)
+  var inputValue = myInput.value
+  gFirstText.text = myInput.value
+  drawText(inputValue, 350, 50, gFirstText.fontSize)
+}
+
 function drawText(text, x, y) {
-  // textCtx.clearRect(0, 0, textCanvas.width, textCanvas.height)
+  // gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
   gCtx.lineWidth = 3.5
   gCtx.strokeStyle = gFirstText.strokeColor
-  gCtx.fillStyle = "white"
-  gCtx.font = "60px Impact"
+  gCtx.fillStyle = gFirstText.color
+  gCtx.font = gFirstText.fontSize + `px Impact`
   gCtx.textAlign = "center"
   gCtx.textBaseline = "middle"
   gCtx.fillText(text, x, y)
