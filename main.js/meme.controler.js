@@ -130,10 +130,13 @@ function AddNewLine() {
   )
 
   getMeme().selectedLineIdx = getMeme().lines.length - 1
+  redrawImg()
 }
 
 function switchLines() {
   getMeme().selectedLineIdx = getMeme().selectedLineIdx === 0 ? 1 : 0
+  myInput.value = getMeme().lines[getMeme().selectedLineIdx].txt
+  redrawImg()
 }
 
 function onDownloadCanvas(elLink) {
