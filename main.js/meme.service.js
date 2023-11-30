@@ -5,14 +5,22 @@ var gMeme = {
   selectedLineIdx: 0,
   lines: [
     {
-      txt: "your text...",
+      txt: "your first text...",
       size: 60,
-      color: "white"
+      color: "white",
+      pos: {
+        x: 350,
+        y: 50
+      }
     },
     {
-      txt: "your text...",
+      txt: "your second text...",
       size: 60,
-      color: "white"
+      color: "white",
+      pos: {
+        x: 350,
+        y: 500
+      }
     }
   ]
 }

@@ -1,38 +1,29 @@
 "use strict"
-const myInput = document.querySelector(".firstTextIn")
+const myInput = document.querySelector(".TextInput")
 let gCanvas
 let gCtx
 let gImg
 
-// let gFirstText = {
-//   text: "your first text...",
-//   color: "white",
-//   fontSize: 60
-// }
-// let gSecondText = {
-//   text: "your second text...",
-//   color: "white",
-//   fontSize: 60
-// }
-
-function changeColor() {
-  // gFirstText.color = document.getElementById("color").value
-  getMeme().lines[0].color = document.getElementById("color").value
-
-  // gFirstText.strokeColor = document.getElementById("StrokeColor").value
-  getMeme().lines[0].strokeColor = document.getElementById("StrokeColor").value
-
-  redrawImg()
-
-  // getMeme().lines[0].color = gFirstText.color
-  getMeme().lines[0].color = getMeme().lines[0].color
-}
+//get the position of the text on the canvas
+// var { posX, posY } = getMeme().lines[getMeme().selectedLineIdx].pos
 
 function onInit() {
   gCanvas = document.querySelector("canvas")
   gCtx = gCanvas.getContext("2d")
 
   renderImgs()
+}
+function changeColor() {
+  getMeme().lines[getMeme().selectedLineIdx].color =
+    document.getElementById("color").value
+
+  getMeme().lines[getMeme().selectedLineIdx].strokeColor =
+    document.getElementById("StrokeColor").value
+
+  redrawImg()
+
+  getMeme().lines[getMeme().selectedLineIdx].color =
+    getMeme().lines[getMeme().selectedLineIdx].color
 }
 
 function renderMeme(elImg) {
@@ -49,60 +40,56 @@ function renderMeme(elImg) {
   const elGalleryNav = document.querySelector(".gallery-nav")
   elGalleryNav.classList.add("hidden")
 
-  // drawText(gFirstText.text, 350, 50)
-  // drawText(gSecondText.text, 350, 500)
-  drawText(getMeme().lines[0].txt, 350, 50)
-  drawText(getMeme().lines[0].txt, 350, 500)
+  drawText(getMeme().lines[0].txt, 350, 50, 0)
+  drawText(getMeme().lines[1].txt, 350, 500, 1)
 
   myInput.addEventListener("input", () => {
     redrawImg()
-    // getMeme().lines[0].txt = gFirstText.text
-    getMeme().lines[0].txt = getMeme().lines[0].txt
+    getMeme().lines[getMeme().selectedLineIdx].txt = myInput.value
   })
 }
 
 function increaseFont(fontSize) {
-  // gFirstText.fontSize += fontSize
-  getMeme().lines[0].size += fontSize
+  getMeme().lines[getMeme().selectedLineIdx].size += fontSize
   redrawImg()
-  // getMeme().lines[0].size = gFirstText.fontSize
-  getMeme().lines[0].size = getMeme().lines[0].size
 }
 
 function decreaseFont(fontSize) {
-  // gFirstText.fontSize -= fontSize
-  getMeme().lines[0].size -= fontSize
+  getMeme().lines[getMeme().selectedLineIdx].size -= fontSize
   redrawImg()
-  // getMeme().lines[0].size = gFirstText.fontSize
-  getMeme().lines[0].size = getMeme().lines[0].size
 }
 
 function redrawImg() {
   gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
   gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height)
   var inputValue = myInput.value
-  // gFirstText.text = myInput.value
-  getMeme().lines[0].txt = myInput.value
+  getMeme().lines[getMeme().selectedLineIdx].txt = inputValue
 
-  // drawText(inputValue, 350, 50, gFirstText.fontSize)
-  drawText(inputValue, 350, 50, getMeme().lines[0].size)
+  for (let i = 0; i < getMeme().lines.length; i++) {
+    drawText(
+      getMeme().lines[i].txt,
+      getMeme().lines[i].pos.x,
+      getMeme().lines[i].pos.y,
+      i
+    )
+  }
 }
 
-function drawText(text, x, y) {
-  // gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
-  gCtx.lineWidth = 3.5
-  // gCtx.strokeStyle = gFirstText.strokeColor
-  gCtx.strokeStyle = getMeme().lines[0].strokeColor
+function drawText(text, x, y, lineIndex) {
+  const lines = getMeme().lines
+  if (lines && lines[lineIndex]) {
+    const currentLine = lines[lineIndex]
 
-  // gCtx.fillStyle = gFirstText.color
-  gCtx.fillStyle = getMeme().lines[0].color
+    gCtx.lineWidth = 3.5
+    gCtx.strokeStyle = currentLine.strokeColor || "black" // Default color if undefined
+    gCtx.fillStyle = currentLine.color || "white" // Default color if undefined
+    gCtx.font = (currentLine.size || 20) + "px Impact" // Default size if undefined
+    gCtx.textAlign = "center"
+    gCtx.textBaseline = "middle"
 
-  // gCtx.font = gFirstText.fontSize + `px Impact`
-  gCtx.font = getMeme().lines[0].size + `px Impact`
-  gCtx.textAlign = "center"
-  gCtx.textBaseline = "middle"
-  gCtx.fillText(text, x, y)
-  gCtx.strokeText(text, x, y)
+    gCtx.fillText(text, x, y)
+    gCtx.strokeText(text, x, y)
+  }
 }
 
 function getDrawText() {
@@ -110,12 +97,27 @@ function getDrawText() {
 }
 
 function AddNewLine() {
-  drawText(getMeme().lines[0].txt, gCanvas.width / 2, gCanvas.height / 2)
   getMeme().lines.push({
     txt: "your text...",
     size: 60,
-    color: "white"
+    color: "white",
+    pos: {
+      x: gCanvas.width / 2,
+      y: gCanvas.height / 2
+    }
   })
+  drawText(
+    getMeme().lines[getMeme().lines.length - 1].txt,
+    gCanvas.width / 2,
+    gCanvas.height / 2,
+    getMeme().lines.length - 1
+  )
+
+  getMeme().selectedLineIdx = getMeme().lines.length - 1
+}
+
+function switchLines() {
+  getMeme().selectedLineIdx = getMeme().selectedLineIdx === 0 ? 1 : 0
 }
 
 function onDownloadCanvas(elLink) {
