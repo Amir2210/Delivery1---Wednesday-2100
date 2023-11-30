@@ -12,10 +12,10 @@
   </head>
 
   <body class="main-layout" onload="onInit()">
-    <header class="main-header main-layout">
+    <header class="main-header header-layout">
       <nav class="main-nav flex align-center space-between">
         <div class="logo">MemeGenrator</div>
-        <ul class="main-nav-list clean-list flex">
+        <ul class="main-nav-list clean-list flex align-center">
           <li><button onclick="goGallery()">gallery</button></li>
           <li><a href="#about">about</a></li>
         </ul>
@@ -23,24 +23,28 @@
     </header>
     <main>
       <section class="gallery">
-        <nav class="gallery-nav">
-          <ul class="main-nav-list clean-list flex space-between">
+        <nav class="gallery-nav gallery-nav-layout">
+          <ul class="main-nav-list clean-list flex space-between align-center">
             <li>
               <input
+                class="search"
                 type="text"
-                placeholder="search "
+                placeholder="search"
                 oninput="onSetFilterBy({text: this.value})"
               />
+              <div class="serachIcon">
+                <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+              </div>
             </li>
-            <ul class="clean-list flex flex">
-              <li><a href="#funny">funny</a></li>
-              <li><a href="#animal">animal</a></li>
-              <li><a href="#men">men</a></li>
-              <li><a href="#women">women</a></li>
-              <li><a href="#comic">comic</a></li>
-              <li><a href="#smile">smile</a></li>
+            <ul class="filter clean-list flex space-between align-center">
+              <li><button>funny</button></li>
+              <li><button>animal</button></li>
+              <li><button>men</button></li>
+              <li><button>menwomen</button></li>
+              <li><button>comic</button></li>
+              <li><button>smile</button></li>
             </ul>
-            <li><a href="more">more</a></li>
+            <li class="more"><button>more</button></li>
           </ul>
         </nav>
         <div class="imges"></div>
@@ -84,6 +88,10 @@
                 alt=""
               />
             </button>
+            <select name="font" id="fontPicker">
+              <option value="impact">impact</option>
+              <option value="square">square</option>
+            </select>
           </div>
         </section>
       </section>

@@ -1,14 +1,68 @@
-/* .gallery img {
-  width: 250px;
-} */
-
+.gallery .gallery-nav ul {
+  position: relative;
+  height: 80px;
+  grid-column: 2;
+}
 .gallery .image-container {
   display: inline-block;
-  width: 200px; /* Set your desired width */
-  height: 200px; /* Set your desired height */
+  /* width: 250px; Set your desired width */
+  height: 250px; /* Set your desired height */
   overflow: hidden;
 }
 
+.gallery .gallery-nav .search {
+  background-color: var(--searchBoxBG);
+  color: var(--searchBox);
+  font-size: 1.375em;
+  padding: 0 4em;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+}
+
+.gallery .gallery-nav i {
+  position: absolute;
+  left: 390px;
+  top: 42px;
+  width: 3px;
+  color: var(--galleryBtn);
+}
+
+.gallery .gallery-nav .filter {
+  background-color: var(--filterBox);
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 4em;
+}
+
+.gallery-nav .filter li button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--searchBox);
+  text-transform: uppercase;
+  font-size: 1.8125em;
+  margin-inline-start: 10px;
+  transition: all 0.5s;
+}
+
+.gallery-nav .filter li:nth-of-type(odd) button:hover {
+  color: var(--filterBoxliODD);
+}
+.gallery-nav .filter li:nth-of-type(even) button:hover {
+  color: var(--filterBoxliEVEN);
+}
+
+.more button {
+  cursor: pointer;
+  border: none;
+  border-radius: 25px;
+  background-color: var(--headerBackground);
+  background: var(--headerBackgroundGrad);
+  color: #fff;
+  font-size: 1.125em;
+  padding: 0.5em 3em;
+}
 .image-container img {
   width: 100%;
   height: 100%;
