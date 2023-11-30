@@ -103,14 +103,16 @@ function redrawImg() {
 }
 
 function drawText(text, x, y, lineIndex) {
+  const selectedFont = document.getElementById("fontPicker").value
   const lines = getMeme().lines
+
   if (lines && lines[lineIndex]) {
     const currentLine = lines[lineIndex]
 
     gCtx.lineWidth = 3.5
     gCtx.strokeStyle = currentLine.strokeColor || "black" // Default color if undefined
     gCtx.fillStyle = currentLine.color || "white" // Default color if undefined
-    gCtx.font = (currentLine.size || 20) + "px Impact" // Default size if undefined
+    gCtx.font = (currentLine.size || 20) + "px " + selectedFont // Default size if undefined
     gCtx.textAlign = "center"
     gCtx.textBaseline = "middle"
 

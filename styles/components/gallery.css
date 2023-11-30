@@ -1,12 +1,13 @@
 .gallery .gallery-nav ul {
+  margin: 0 20px;
   position: relative;
   height: 80px;
   grid-column: 2;
 }
 .gallery .image-container {
   display: inline-block;
-  /* width: 250px; Set your desired width */
-  height: 250px; /* Set your desired height */
+  width: 250px;
+  height: 250px;
   overflow: hidden;
 }
 
@@ -32,7 +33,8 @@
   background-color: var(--filterBox);
   height: 50px;
   border-radius: 25px;
-  padding: 0 4em;
+  font-size: 10px;
+  padding: 0 2em;
 }
 
 .gallery-nav .filter li button {
@@ -61,7 +63,7 @@
   background: var(--headerBackgroundGrad);
   color: #fff;
   font-size: 1.125em;
-  padding: 0.5em 3em;
+  padding: 0.5em 1em;
 }
 .image-container img {
   width: 100%;
