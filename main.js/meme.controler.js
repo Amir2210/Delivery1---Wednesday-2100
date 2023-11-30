@@ -47,6 +47,33 @@ function renderMeme(elImg) {
     redrawImg()
     getMeme().lines[getMeme().selectedLineIdx].txt = myInput.value
   })
+
+  gCanvas.addEventListener("click", (event) => {
+    const clickX = event.offsetX
+    const clickY = event.offsetY
+
+    for (let i = 0; i < getMeme().lines.length; i++) {
+      const { x, y, txt } = getMeme().lines[i].pos
+      const textWidth = gCtx.measureText(txt).width
+      const textHeight = getMeme().lines[i].size || 20
+
+      if (
+        clickX >= x - textWidth / 2 &&
+        clickX <= x + textWidth / 2 &&
+        clickY >= y - textHeight / 2 &&
+        clickY <= y + textHeight / 2
+      ) {
+        // Line clicked, select it for editing
+        getMeme().selectedLineIdx = i
+
+        // Update the input value to reflect the selected line
+        myInput.value = getMeme().lines[i].txt
+
+        redrawImg()
+        break // Exit the loop after the first line is selected
+      }
+    }
+  })
 }
 
 function increaseFont(fontSize) {
