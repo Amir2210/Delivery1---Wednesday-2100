@@ -6,7 +6,9 @@ function renderImgs() {
     .map(
       (img) =>
         `
-      <img  onclick=" renderMeme(this)" src="images/meme-imgs (square)/${img.id}.jpg" alt="memeImg">
+        <div class=" image-container">
+      <img data-id = ${img.id} onclick=" renderMeme(this)" src="images/meme-imgs (square)/${img.id}.jpg" alt="memeImg">
+      </div>
       `
     )
     .join("")
@@ -14,7 +16,9 @@ function renderImgs() {
     .map(
       (img) =>
         `
-      <img  onclick=" renderMeme(this)" src="images/meme-imgs (various aspect ratios)/${img.id}.jpg" alt="memeImg">
+        <div class=" image-container">
+      <img data-id = ${img.id}  onclick=" renderMeme(this)" src="images/meme-imgs (various aspect ratios)/${img.id}.jpg" alt="memeImg">
+      </div>
       `
     )
     .join("")

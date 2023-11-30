@@ -6,8 +6,13 @@ var gMeme = {
   lines: [
     {
       txt: "your text...",
-      size: 20,
-      color: "red"
+      size: 60,
+      color: "white"
+    },
+    {
+      txt: "your text...",
+      size: 60,
+      color: "white"
     }
   ]
 }
@@ -21,11 +26,3 @@ var gKeywordSearchCountMap = {
 function getMeme() {
   return gMeme
 }
-
-function setLineTxt() {
-  gMeme.lines[0].txt = getDrawText()
-}
-
-// function setSelectedImgId(){
-//   gMeme.selectedImgId
-// }
