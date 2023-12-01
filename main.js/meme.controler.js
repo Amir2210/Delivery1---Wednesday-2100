@@ -137,10 +137,6 @@ function drawText(text, x, y, lineIndex) {
   }
 }
 
-function getDrawText() {
-  return gFirstText
-}
-
 function AddNewLine() {
   getMeme().lines.push({
     txt: "your text...",
@@ -166,6 +162,46 @@ function switchLines() {
   getMeme().selectedLineIdx = getMeme().selectedLineIdx === 0 ? 1 : 0
   myInput.value = getMeme().lines[getMeme().selectedLineIdx].txt
   redrawImg()
+}
+
+function alignToLeft() {
+  const selectedLineIdx = getMeme().selectedLineIdx
+
+  if (selectedLineIdx !== undefined) {
+    const selectedLine = getMeme().lines[selectedLineIdx]
+
+    // Align to left by setting the x position to the leftmost point
+    selectedLine.pos.x = selectedLine.size * 2
+
+    // Redraw the canvas with the updated alignment
+    redrawImg()
+  }
+}
+function alignToRigth() {
+  const selectedLineIdx = getMeme().selectedLineIdx
+
+  if (selectedLineIdx !== undefined) {
+    const selectedLine = getMeme().lines[selectedLineIdx]
+
+    // Align to left by setting the x position to the leftmost point
+    selectedLine.pos.x = selectedLine.size * 10
+
+    // Redraw the canvas with the updated alignment
+    redrawImg()
+  }
+}
+function alignToCenter() {
+  const selectedLineIdx = getMeme().selectedLineIdx
+
+  if (selectedLineIdx !== undefined) {
+    const selectedLine = getMeme().lines[selectedLineIdx]
+
+    // Align to left by setting the x position to the leftmost point
+    selectedLine.pos.x = 350
+
+    // Redraw the canvas with the updated alignment
+    redrawImg()
+  }
 }
 
 function onDownloadCanvas(elLink) {
