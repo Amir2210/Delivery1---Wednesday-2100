@@ -3,6 +3,8 @@ const myInput = document.querySelector(".TextInput")
 let gCanvas
 let gCtx
 let gImg
+let isDragging = false
+let dragOffsetX, dragOffsetY
 
 //get the position of the text on the canvas
 // var { posX, posY } = getMeme().lines[getMeme().selectedLineIdx].pos
@@ -40,14 +42,15 @@ function renderMeme(elImg) {
   const elGalleryNav = document.querySelector(".gallery-nav")
   elGalleryNav.classList.add("hidden")
 
-  drawText(getMeme().lines[0].txt, 350, 50, 0)
-  drawText(getMeme().lines[1].txt, 350, 500, 1)
+  if (Array.isArray(getMeme().lines) && getMeme().lines.length >= 2) {
+    drawText(getMeme().lines[0].txt, 350, 50, 0)
+    drawText(getMeme().lines[1].txt, 350, 500, 1)
+  }
 
   myInput.addEventListener("input", () => {
-    redrawImg()
     getMeme().lines[getMeme().selectedLineIdx].txt = myInput.value
+    redrawImg()
   })
-
   gCanvas.addEventListener("click", (event) => {
     const clickX = event.offsetX
     const clickY = event.offsetY
@@ -63,17 +66,101 @@ function renderMeme(elImg) {
         clickY >= y - textHeight / 2 &&
         clickY <= y + textHeight / 2
       ) {
-        // Line clicked, select it for editing
         getMeme().selectedLineIdx = i
 
-        // Update the input value to reflect the selected line
         myInput.value = getMeme().lines[i].txt
 
         redrawImg()
-        break // Exit the loop after the first line is selected
+        break
       }
     }
   })
+  // SUPPORT DRAG AND DROP
+  gCanvas.addEventListener("mousedown", handleMouseDown)
+  gCanvas.addEventListener("mousemove", handleMouseMove)
+  gCanvas.addEventListener("mouseup", handleMouseUp)
+
+  // WHEN THE CANVAS CLICKED IS REMOVE THE FRAME FROM THE SELECTED TEXT LINE
+  gCanvas.addEventListener("click", (event) => {
+    const clickX = event.offsetX
+    const clickY = event.offsetY
+
+    let isLineClicked = false
+
+    for (let i = 0; i < getMeme().lines.length; i++) {
+      const { x, y, txt } = getMeme().lines[i].pos
+      const textWidth = gCtx.measureText(txt).width
+      const textHeight = getMeme().lines[i].size || 20
+
+      if (
+        clickX >= x - textWidth / 2 &&
+        clickX <= x + textWidth / 2 &&
+        clickY >= y - textHeight / 2 &&
+        clickY <= y + textHeight / 2
+      ) {
+        getMeme().selectedLineIdx = i
+
+        myInput.value = getMeme().lines[i].txt
+
+        redrawImg()
+        isLineClicked = true
+        break
+      }
+    }
+
+    if (!isLineClicked) {
+      getMeme().selectedLineIdx = null
+      redrawImg()
+    }
+  })
+}
+
+function handleMouseDown(event) {
+  const clickX = event.offsetX
+  const clickY = event.offsetY
+
+  for (let i = 0; i < getMeme().lines.length; i++) {
+    const { x, y, txt } = getMeme().lines[i].pos
+    const textWidth = gCtx.measureText(txt).width
+    const textHeight = getMeme().lines[i].size || 20
+
+    if (
+      clickX >= x - textWidth / 2 &&
+      clickX <= x + textWidth / 2 &&
+      clickY >= y - textHeight / 2 &&
+      clickY <= y + textHeight / 2
+    ) {
+      isDragging = true
+
+      dragOffsetX = clickX - x
+      dragOffsetY = clickY - y
+
+      getMeme().selectedLineIdx = i
+
+      myInput.value = getMeme().lines[i].txt
+
+      redrawImg()
+      break
+    }
+  }
+}
+
+function handleMouseMove(event) {
+  if (isDragging) {
+    const newX = event.offsetX - dragOffsetX
+    const newY = event.offsetY - dragOffsetY
+
+    // Update the position of the selected line
+    getMeme().lines[getMeme().selectedLineIdx].pos.x = newX
+    getMeme().lines[getMeme().selectedLineIdx].pos.y = newY
+
+    redrawImg()
+  }
+}
+
+function handleMouseUp() {
+  // Stop dragging when the mouse button is released
+  isDragging = false
 }
 
 function increaseFont(fontSize) {
@@ -89,8 +176,6 @@ function decreaseFont(fontSize) {
 function redrawImg() {
   gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
   gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height)
-  var inputValue = myInput.value
-  getMeme().lines[getMeme().selectedLineIdx].txt = inputValue
 
   for (let i = 0; i < getMeme().lines.length; i++) {
     drawText(
@@ -106,7 +191,7 @@ function drawText(text, x, y, lineIndex) {
   const selectedFont = document.getElementById("fontPicker").value
   const lines = getMeme().lines
 
-  if (lines && lines[lineIndex]) {
+  if (Array.isArray(lines) && lines[lineIndex]) {
     const currentLine = lines[lineIndex]
 
     gCtx.lineWidth = 3.5
@@ -202,6 +287,106 @@ function alignToCenter() {
     // Redraw the canvas with the updated alignment
     redrawImg()
   }
+}
+
+function dltText() {
+  const selectedLineIdx = getMeme().selectedLineIdx
+
+  if (
+    selectedLineIdx !== undefined &&
+    selectedLineIdx < getMeme().lines.length
+  ) {
+    // Remove the selected line from the lines array
+    getMeme().lines.splice(selectedLineIdx, 1)
+
+    // Clear the input value
+    myInput.value = ""
+
+    // Reset the selected line index to prevent referencing a non-existing line
+    getMeme().selectedLineIdx = undefined
+
+    // Redraw the canvas without the deleted line
+    redrawImg()
+  }
+}
+
+function getRandomImage() {
+  const images = getSquareImgs()
+  console.log(images)
+
+  if (Array.isArray(images) && images.length > 0) {
+    const randomIndex = Math.floor(Math.random() * images.length)
+    console.log(images[randomIndex])
+
+    // return images[randomIndex]
+    // return `<img data-id = ${images.id} onclick=" renderMeme(this)" src="images/meme-imgs (square)/${images.id}.jpg" alt="memeImg">`
+
+    const imgElement = document.createElement("img")
+    imgElement.setAttribute("data-id", randomIndex + 1)
+    imgElement.setAttribute("onclick", "renderMeme(this)")
+    imgElement.setAttribute(
+      "src",
+      `images/meme-imgs (square)/${randomIndex + 1}.jpg`
+    )
+    imgElement.setAttribute("alt", "memeImg")
+    return imgElement
+  }
+
+  console.error("Invalid image format")
+  return null
+}
+
+function generateRandomMeme() {
+  const elMemeController = document.querySelector(".meme-controller")
+  elMemeController.classList.remove("hidden")
+
+  const elSectionImg = document.querySelector(".gallery .imges")
+  elSectionImg.classList.add("hidden")
+
+  const elGalleryNav = document.querySelector(".gallery-nav")
+  elGalleryNav.classList.add("hidden")
+
+  // Reset the meme data
+  resetMeme()
+
+  const randomImg = getRandomImage()
+
+  if (randomImg) {
+    renderMeme(randomImg)
+
+    addDefaultTextLine()
+  }
+}
+
+function addDefaultTextLine() {
+  // Add a default text line to the meme
+  getMeme().lines.push({
+    txt: "Your text here",
+    size: 60,
+    color: "white",
+    pos: {
+      x: gCanvas.width / 2,
+      y: gCanvas.height / 2
+    }
+  })
+
+  drawText(
+    getMeme().lines[getMeme().lines.length - 1].txt,
+    gCanvas.width / 2,
+    gCanvas.height / 2,
+    getMeme().lines.length - 1
+  )
+
+  getMeme().selectedLineIdx = getMeme().lines.length - 1
+
+  redrawImg()
+}
+
+function resetMeme() {
+  // Reset the meme data to start with a clean slate
+  getMeme().selectedImgId = null
+  getMeme().lines = []
+  getMeme().selectedLineIdx = null
 }
 
 function onDownloadCanvas(elLink) {
