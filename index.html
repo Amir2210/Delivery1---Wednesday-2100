@@ -25,38 +25,37 @@
     </header>
     <main>
       <section class="gallery">
-        <nav class="gallery-nav gallery-nav-layout">
-          <ul class="main-nav-list clean-list flex align-center">
-            <li>
-              <div class="gallery-filter">
-                <label for="imageFilterInput">Gallery Filter:</label>
-                <input type="text" id="imageFilterInput" placeholder="Search by keyword...">
-                <button onclick="clearFilter()">Clear Filter</button>
-            </div>
-            
-              <!-- <input
-                class="search"
-                type="text"
-                placeholder="search"
-                oninput="onSetFilterBy({text: this.value})"
-              /> -->
-              <div class="serachIcon">
-                <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+        <nav class="gallery-nav gallery-nav-layout flex direction-column align-center ">
+          <div class="nav-row1">
+
+            <ul class="main-nav-list clean-list flex align-center space-around">
+              <li>
+                <div class="gallery-filter">
+                  <input type="text" id="imageFilterInput" placeholder="Search by keyword...">
+                  <button class="clrFilter-btn" onclick="clearFilter()">Clear Filter</button>
               </div>
-            </li>
-            <ul class="filter clean-list flex space-between align-center">
-              <li><button class="btnFilterImg" onclick="filterImagesByKeyword('funny')">funny</button></li>
-              <li><button class="btnFilterImg" onclick="filterImagesByKeyword('animal')">animal</button></li>
-              <li><button  class="btnFilterImg"onclick="filterImagesByKeyword('men')">men</button></li>
-              <li><button  class="btnFilterImg" onclick="filterImagesByKeyword('women')">women</button></li>
-              <li><button class="btnFilterImg" onclick="filterImagesByKeyword('comic')">comic</button></li>
-              <li><button class="btnFilterImg" onclick="filterImagesByKeyword('smile')">smile</button></li>
-            </ul>
+                <div class="serachIcon">
+                  <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+                </div>
+              </li>
+              <ul class="filter clean-list flex space-between align-center">
+                <li><button class="btnFilterImg" onclick="filterImagesByKeyword('funny')">funny</button></li>
+                <li><button class="btnFilterImg" onclick="filterImagesByKeyword('animal')">animal</button></li>
+                <li><button  class="btnFilterImg"onclick="filterImagesByKeyword('men')">men</button></li>
+                <li><button  class="btnFilterImg" onclick="filterImagesByKeyword('women')">women</button></li>
+                <li><button class="btnFilterImg" onclick="filterImagesByKeyword('comic')">comic</button></li>
+                <li><button class="btnFilterImg" onclick="filterImagesByKeyword('smile')">smile</button></li>
+              </ul>
+          </div>
+
+          <div class="nav-row2">
+            <ul class="clean-list flex align-center justify-content-center">
             <li class="more"><button>more</button></li>
             <li class="more">
               <button onclick="generateRandomMeme()">i'm flexible</button>
             </li>
           </ul>
+          </div>
         </nav>
         <div class="imges"></div>
       </section>
