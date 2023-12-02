@@ -36,5 +36,11 @@
 
 .meme-controller-layout {
   display: grid;
-  grid-template-columns: 80px 1fr 80px 1fr 80px;
+  grid-template-columns: 80px 700px 40px 1fr 80px;
 }
+
+/* .MemeEditor-layout {
+  display: grid;
+  grid-template-columns: 25px 1fr 25px;
+  grid-template-rows: 200px 1fr 1fr 1fr;
+} */

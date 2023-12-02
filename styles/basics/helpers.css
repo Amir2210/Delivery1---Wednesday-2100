@@ -24,6 +24,13 @@
 .flex.warp {
   flex-wrap: wrap;
 }
+.flex.direction-column {
+  flex-direction: column;
+}
+
+.flec.text-align {
+  text-align: center;
+}
 
 .flex.justify-content-center {
   justify-content: center;

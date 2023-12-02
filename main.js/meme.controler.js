@@ -15,18 +15,6 @@ function onInit() {
 
   renderImgs()
 }
-function changeColor() {
-  getMeme().lines[getMeme().selectedLineIdx].color =
-    document.getElementById("color").value
-
-  getMeme().lines[getMeme().selectedLineIdx].strokeColor =
-    document.getElementById("StrokeColor").value
-
-  redrawImg()
-
-  getMeme().lines[getMeme().selectedLineIdx].color =
-    getMeme().lines[getMeme().selectedLineIdx].color
-}
 
 function renderMeme(elImg) {
   gImg = elImg
@@ -187,6 +175,19 @@ function redrawImg() {
   }
 }
 
+function changeColor() {
+  getMeme().lines[getMeme().selectedLineIdx].color =
+    document.getElementById("color").value
+
+  getMeme().lines[getMeme().selectedLineIdx].strokeColor =
+    document.getElementById("StrokeColor").value
+
+  redrawImg()
+
+  getMeme().lines[getMeme().selectedLineIdx].color =
+    getMeme().lines[getMeme().selectedLineIdx].color
+}
+
 function drawText(text, x, y, lineIndex) {
   const selectedFont = document.getElementById("fontPicker").value
   const lines = getMeme().lines
@@ -312,14 +313,9 @@ function dltText() {
 
 function getRandomImage() {
   const images = getSquareImgs()
-  console.log(images)
 
   if (Array.isArray(images) && images.length > 0) {
     const randomIndex = Math.floor(Math.random() * images.length)
-    console.log(images[randomIndex])
-
-    // return images[randomIndex]
-    // return `<img data-id = ${images.id} onclick=" renderMeme(this)" src="images/meme-imgs (square)/${images.id}.jpg" alt="memeImg">`
 
     const imgElement = document.createElement("img")
     imgElement.setAttribute("data-id", randomIndex + 1)
@@ -383,7 +379,7 @@ function addDefaultTextLine() {
 }
 
 function resetMeme() {
-  // Reset the meme data to start with a clean slate
+  // Reset the meme data
   getMeme().selectedImgId = null
   getMeme().lines = []
   getMeme().selectedLineIdx = null

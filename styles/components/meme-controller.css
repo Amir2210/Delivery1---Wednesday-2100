@@ -13,5 +13,118 @@
 }
 
 .meme-controller img {
-  width: 35px;
+  width: 65px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.meme-controller button {
+  border-radius: 10px;
+  margin-inline-start: 20px;
+  transition: border 0.5s;
+}
+
+.meme-controller button:hover {
+  border: 2px solid #fff;
+}
+
+.meme-controller .textInput {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.meme-controller .textInput input {
+  width: 100%;
+  margin: 20px 0;
+  font-size: 2.5625em;
+  border-radius: 25px;
+  color: var(--textInput);
+  text-align: center;
+}
+
+.meme-controller .textChanger {
+  margin: 20px 0;
+  background-color: var(--headerBackground);
+  background: var(--headerBackgroundGrad);
+  padding: 1em 0;
+  text-align: center;
+  width: 80%;
+  border-radius: 20px;
+}
+
+.meme-controller .textChanger input {
+  width: 150px;
+  height: 30px;
+}
+
+.meme-controller .textChanger button {
+  margin: 0 30px;
+}
+
+.meme-controller .box1 {
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.meme-controller .box2 {
+  justify-content: center;
+}
+
+.meme-controller .box2 label {
+  font-size: 1.6em;
+  color: #000;
+  margin: 0 10px;
+}
+.meme-controller .box3 {
+}
+
+.meme-controller .box3 .switchLines-btn {
+  background: rgb(63, 221, 251);
+  background: linear-gradient(
+    180deg,
+    rgba(63, 221, 251, 1) 0%,
+    rgba(255, 255, 255, 1) 98%
+  );
+}
+
+.meme-controller .box3 .AddNewLine-btn {
+  background: rgb(63, 251, 97);
+  background: linear-gradient(
+    180deg,
+    rgba(63, 251, 97, 1) 0%,
+    rgba(188, 236, 194, 1) 71%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.meme-controller .box3 .dltText {
+  background: rgb(255, 0, 35);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 0, 35, 1) 0%,
+    rgba(255, 171, 160, 1) 57%,
+    rgba(255, 204, 204, 1) 100%
+  );
+}
+
+.meme-controller .downloadImg {
+  display: flex;
+}
+
+.meme-controller .downloadImg button {
+  cursor: pointer;
+  padding: 2em;
+  background-color: var(--downloadBgBtn);
+}
+
+.meme-controller .downloadImg a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.3125em;
+}
+
+.meme-controller .downloadImg i {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.3125em;
 }
