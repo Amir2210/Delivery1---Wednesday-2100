@@ -27,8 +27,14 @@ function renderMeme(elImg) {
   const elSectionImg = document.querySelector(".gallery .imges")
   elSectionImg.classList.add("hidden")
 
-  const elGalleryNav = document.querySelector(".gallery-nav")
-  elGalleryNav.classList.add("hidden")
+  const elGallerySearchBox = document.querySelector(".gallery-nav .search-box")
+  elGallerySearchBox.classList.add("hidden")
+
+  const elGalleryFilterBox = document.querySelector(".gallery-nav .filter-box")
+  elGalleryFilterBox.classList.add("hidden")
+
+  const elGallerynavRow2 = document.querySelector(".gallery-nav .nav-row2")
+  elGallerynavRow2.classList.add("hidden")
 
   if (Array.isArray(getMeme().lines) && getMeme().lines.length >= 2) {
     drawText(getMeme().lines[0].txt, 350, 50, 0)

@@ -1,0 +1,9 @@
+footer {
+  background-color: var(--headerBackground);
+  background: var(--headerBackgroundGrad);
+  width: 100%;
+}
+
+footer h2 {
+  font-size: 2em;
+}

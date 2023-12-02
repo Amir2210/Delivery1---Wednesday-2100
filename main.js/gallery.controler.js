@@ -61,8 +61,14 @@ function goGallery() {
   const elSectionImg = document.querySelector(".gallery .imges")
   elSectionImg.classList.remove("hidden")
 
-  const elGalleryNav = document.querySelector(".gallery-nav")
-  elGalleryNav.classList.remove("hidden")
+  const elGallerySearchBox = document.querySelector(".gallery-nav .search-box")
+  elGallerySearchBox.classList.remove("hidden")
+
+  const elGalleryFilterBox = document.querySelector(".gallery-nav .filter-box")
+  elGalleryFilterBox.classList.remove("hidden")
+
+  const elGallerynavRow2 = document.querySelector(".gallery-nav .nav-row2")
+  elGallerynavRow2.classList.remove("hidden")
 
   const elMemeController = document.querySelector(".meme-controller")
   elMemeController.classList.add("hidden")

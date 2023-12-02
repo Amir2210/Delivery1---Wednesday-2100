@@ -24,14 +24,7 @@
 
 .gallery-nav-layout {
   display: grid;
-  grid-template-columns:
-    125px
-    1fr
-    125px;
-}
-
-.galleryImg-layout {
-  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 
 .meme-controller-layout {

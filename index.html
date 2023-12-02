@@ -25,28 +25,33 @@
     </header>
     <main>
       <section class="gallery">
-        <nav class="gallery-nav gallery-nav-layout flex direction-column align-center ">
-          <div class="nav-row1">
+        <nav class="gallery-nav flex direction-column align-center">
 
+            <div class="search-box">
             <ul class="main-nav-list clean-list flex align-center space-around">
-              <li>
-                <div class="gallery-filter">
-                  <input type="text" id="imageFilterInput" placeholder="Search by keyword...">
-                  <button class="clrFilter-btn" onclick="clearFilter()">Clear Filter</button>
-              </div>
-                <div class="serachIcon">
-                  <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+                <li>
+                  <div class="gallery-filter">
+                    <input type="text" id="imageFilterInput" placeholder="Search by keyword...">
+                    <button class="clrFilter-btn" onclick="clearFilter()">Clear Filter</button>
                 </div>
-              </li>
-              <ul class="filter clean-list flex space-between align-center">
-                <li><button class="btnFilterImg" onclick="filterImagesByKeyword('funny')">funny</button></li>
-                <li><button class="btnFilterImg" onclick="filterImagesByKeyword('animal')">animal</button></li>
-                <li><button  class="btnFilterImg"onclick="filterImagesByKeyword('men')">men</button></li>
-                <li><button  class="btnFilterImg" onclick="filterImagesByKeyword('women')">women</button></li>
-                <li><button class="btnFilterImg" onclick="filterImagesByKeyword('comic')">comic</button></li>
-                <li><button class="btnFilterImg" onclick="filterImagesByKeyword('smile')">smile</button></li>
+                  <div class="serachIcon">
+                    <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+                  </div>
+                </li>
               </ul>
-          </div>
+              </div> 
+
+              <div class="filter-box">
+                <ul class="filter clean-list flex space-between align-center">
+                  <li><button class="btnFilterImg" onclick="filterImagesByKeyword('funny')">funny</button></li>
+                  <li><button class="btnFilterImg" onclick="filterImagesByKeyword('animal')">animal</button></li>
+                  <li><button  class="btnFilterImg"onclick="filterImagesByKeyword('men')">men</button></li>
+                  <li><button  class="btnFilterImg" onclick="filterImagesByKeyword('women')">women</button></li>
+                  <li><button class="btnFilterImg" onclick="filterImagesByKeyword('comic')">comic</button></li>
+                  <li><button class="btnFilterImg" onclick="filterImagesByKeyword('smile')">smile</button></li>
+                </ul>
+              </div>
+
 
           <div class="nav-row2">
             <ul class="clean-list flex align-center justify-content-center">
@@ -56,14 +61,17 @@
             </li>
           </ul>
           </div>
+          
         </nav>
-        <div class="imges"></div>
+        <div class="imges "></div>
       </section>
 
       <section class="meme-controller meme-controller-layout hidden">
+
         <section class="canvas-contaienr">
           <canvas width="700" height="600"></canvas>
         </section>
+
         <section class="MemeEditor flex direction-column align-center">
           <div class="textInput">
             <input
@@ -133,7 +141,15 @@
         </section>
       </section>
     </main>
-
+    <footer class="flex direction-column">
+      <div class="footer-title flex  justify-content-center">
+        <h2>MemeGenerator</h4>
+      </div>
+      
+      <div class="copyright flex  justify-content-center">
+        <p>&copy; 2023 MemeGenerator. All rights reserved.</p>
+      </div>
+    </footer>
     <script src="main.js/meme.service.js"></script>
     <script src="main.js/meme.controler.js"></script>
     <script src="main.js/gallery.service.js"></script>
