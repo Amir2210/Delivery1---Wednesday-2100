@@ -17,9 +17,7 @@
         <div class="logo">MemeGenrator</div>
       <div>
         <button class="gallery-btn" onclick="goGallery()">Gallery</button>
-      </div>
-        
-        
+      </div>  
       </nav>
     </header>
     <main>
@@ -32,7 +30,7 @@
                   <div class="gallery-filter">
                     <input type="text" id="imageFilterInput" placeholder="Search by keyword...">
                     <button class="clrFilter-btn" onclick="clearFilter()">Clear Filter</button>
-                </div>
+                  </div>
                   <div class="serachIcon">
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                   </div>
@@ -115,13 +113,7 @@
                 <img src="images/icons/align-to-right.png" alt="" />
               </button>
             </div>
-
-            <div class="box2 flex">
-              <select name="font" id="fontPicker">
-                <option value="Impact">Impact</option>
-                <option value="Arial">Arial</option>
-                <option value="Lato">Lato</option>
-              </select>
+            <div class="box2">
               <form id="myForm" oninput=" changeColor()">
                 <label for="color">color</label>
                 <input type="color" name="color" id="color" value="#ffffff" />
@@ -129,13 +121,32 @@
                 <input type="color" name="StrokeColor" id="StrokeColor" />
               </form>
             </div>
+          
+            <div class="box3">
+              <select name="font" id="fontPicker">
+                <option value="Impact">Impact</option>
+                <option value="Arial">Arial</option>
+                <option value="Lato">Lato</option>
+              </select>
+            </div>
           </div>
 
           <div class="downloadImg">
-            <button>
-              <i class="fa-solid fa-download fa-lg"></i>          
-              <a href="#" onclick="onDownloadCanvas(this)"> Download</a
+
+            <div>
+              <button class="dli-btn">
+                <i class="fa-solid fa-download fa-lg"></i>          
+                <a href="#" onclick="onDownloadCanvas(this)"> Download</a
+              </button>
+            </div>
+
+            <div>
+              <button class="Share-btn" onclick="onUploadImg()">
+                <i class="fa-solid fa-share-nodes fa-lg"></i>
+                Share
             </button>
+            </div>
+
           </div>
         </section>
       </section>

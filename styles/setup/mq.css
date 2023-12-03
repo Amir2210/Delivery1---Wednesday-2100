@@ -2,32 +2,18 @@
   .gallery .imges {
     text-align: center;
   }
-  .meme-controller .MemeEditor {
-    /* background-color: aliceblue; */
+}
+@media (max-width: 1310px) {
+  .meme-controller .canvas-contaienr {
+    margin: 20px auto;
   }
-  .meme-controller img {
-    width: 35px;
-    padding: 5px;
-  }
-  .meme-controller .textChanger button {
-    margin: 0 10px;
-  }
-  .meme-controller .textChanger {
-    height: 250px;
-  }
-  .meme-controller .box2 {
+
+  .meme-controller {
     flex-direction: column;
-  }
-  .meme-controller .box2 select {
-    width: 40%;
     margin: auto;
   }
-  .meme-controller .box2 input {
-    margin-block-start: 20px;
-    width: 50px;
-  }
-  .meme-controller .box2 label {
-    font-size: 1em;
+  .meme-controller .MemeEditor {
+    margin-bottom: 10px;
   }
 }
 
@@ -52,9 +38,9 @@
   .header-layout {
     display: grid;
     grid-template-columns:
-      100px
+      50px
       1fr
-      100px;
+      50px;
   }
   .main-header .logo {
     margin: 0 20px;
@@ -83,27 +69,50 @@
     width: 100%;
     margin: 20px auto;
   }
-  .main-header .logo {
-    /* font-size: 1.375em; */
-  }
   .main-header .main-nav {
     justify-content: center;
   }
+  /* .canvas-contaienr {
+    display: none;
+  } */
 }
 
 @media (max-width: 650px) {
   .main-header {
     height: 100px;
-    width: max-content;
-    margin: 20px auto;
+    width: 90%;
+    margin-block-start: 0.5em;
+    margin-block-end: 30px;
   }
   .gallery .gallery-nav .filter {
     height: 100px;
-    width: 30em; /* Use 100% width to make it responsive */
+    width: 30em;
     overflow-x: auto;
     white-space: nowrap;
-    padding: 10px; /* Add padding for better spacing */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
-    border-radius: 8px; /* Add rounded corners */
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  .gallery-filter input {
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 70px;
+    font-size: 1.2em;
+  }
+  .gallery-filter .clrFilter-btn {
+    margin: 15px 0;
+    margin-left: 130px;
+  }
+  .gallery .image-container {
+    width: 300px;
+    height: 300px;
+  }
+  /* .meme-controller .textInput input{
+    width: 4px;
+  } */
+
+  .meme-controller .MemeEditor {
+    width: 500px;
   }
 }

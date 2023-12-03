@@ -2,18 +2,17 @@
   margin-block-start: 1em;
 }
 
-.meme-controller .canvas-contaienr {
-  grid-column: 2;
-}
-
 .meme-controller .MemeEditor {
   grid-column: 4;
-  height: 600px;
+  height: 550px;
   background-color: #333;
+  border: 3px solid black;
+  border-radius: 15px;
+  padding: 0 10px;
 }
 
 .meme-controller img {
-  width: 65px;
+  width: 50px;
   cursor: pointer;
   padding: 5px;
 }
@@ -46,9 +45,10 @@
   margin: 20px 0;
   background-color: var(--headerBackground);
   background: var(--headerBackgroundGrad);
-  padding: 1em 0;
+  padding: 1em;
   text-align: center;
-  width: 80%;
+  width: 90%;
+  height: 250px;
   border-radius: 20px;
 }
 
@@ -58,25 +58,52 @@
 }
 
 .meme-controller .textChanger button {
-  margin: 0 30px;
+  margin: 0 10px;
 }
 
 .meme-controller .box1 {
-  justify-content: center;
+  display: flex;
+  justify-content: space-around;
   margin: 20px 0;
 }
 
 .meme-controller .box2 {
-  justify-content: center;
+  margin: 20px 0;
+}
+
+.meme-controller .box2 input {
+  width: 40px;
 }
 
 .meme-controller .box2 label {
-  font-size: 1.6em;
+  font-size: 1.1em;
   color: #000;
   margin: 0 10px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
-.meme-controller .box3 {
+
+#fontPicker {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+#fontPicker:focus {
+  outline: none;
+  border-color: #fff; /* Change border color on focus */
+}
+
+#fontPicker::after {
+  content: "\25BC"; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555; /* Arrow color */
 }
 
 .meme-controller .box3 .switchLines-btn {
@@ -110,18 +137,34 @@
 
 .meme-controller .downloadImg {
   display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .meme-controller .downloadImg button {
+  margin-inline-start: 20px;
+  border: none;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 2px;
+}
+
+.meme-controller .downloadImg .dli-btn {
   cursor: pointer;
-  padding: 2em;
+  padding: 0.8em;
   background-color: var(--downloadBgBtn);
+  font-size: 1.3125em;
+}
+.meme-controller .downloadImg .Share-btn {
+  cursor: pointer;
+  padding: 0.8em;
+  font-size: 1.3125em;
+  background-color: rgb(99, 99, 255);
+  color: #fff;
 }
 
 .meme-controller .downloadImg a {
   text-decoration: none;
   color: #fff;
-  font-size: 1.3125em;
 }
 
 .meme-controller .downloadImg i {

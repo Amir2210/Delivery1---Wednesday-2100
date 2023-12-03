@@ -2,6 +2,7 @@
   background-color: var(--headerBackground);
   background: var(--headerBackgroundGrad);
   margin-top: auto;
+  border-radius: 10px;
 }
 
 footer h2 {

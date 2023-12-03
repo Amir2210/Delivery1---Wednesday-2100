@@ -6,14 +6,56 @@ let gImg
 let isDragging = false
 let dragOffsetX, dragOffsetY
 
-//get the position of the text on the canvas
-// var { posX, posY } = getMeme().lines[getMeme().selectedLineIdx].pos
-
 function onInit() {
   gCanvas = document.querySelector("canvas")
   gCtx = gCanvas.getContext("2d")
 
   renderImgs()
+  window.addEventListener("resize", resizeCanvas)
+
+  // Call resizeCanvas initially to set the initial canvas size and positions
+  resizeCanvas()
+}
+
+function resizeCanvas() {
+  // Check the window width and set the canvas size accordingly
+  if (window.innerWidth < 800) {
+    gCanvas.width = 430
+    gCanvas.height = 430
+
+    // Adjust font size for smaller window width
+    setFontSizes(40) // Set your desired smaller font size here
+
+    // Set initial positions for text lines
+    getMeme().lines[0].pos = { x: 250, y: 50 }
+    getMeme().lines[1].pos = { x: 250, y: 300 }
+  } else {
+    // Set your default canvas size here (if needed)
+    gCanvas.width = 700
+    gCanvas.height = 600
+
+    // Reset font size to default when the window is wider
+    setFontSizes(60) // Set your default font size here
+
+    // Reset initial positions for text lines
+    getMeme().lines[0].pos = { x: 215, y: 50 }
+    getMeme().lines[1].pos = { x: 215, y: 300 }
+  }
+
+  // Redraw the image after resizing the canvas
+  redrawImg()
+}
+
+function setFontSizes(fontSize) {
+  // Set font size for all text lines in the meme
+  if (Array.isArray(getMeme().lines)) {
+    getMeme().lines.forEach((line) => {
+      line.size = fontSize
+    })
+  }
+
+  // Redraw the image with the updated font size
+  redrawImg()
 }
 
 function renderMeme(elImg) {
@@ -38,8 +80,8 @@ function renderMeme(elImg) {
   elGallerynavRow2.classList.add("hidden")
 
   if (Array.isArray(getMeme().lines) && getMeme().lines.length >= 2) {
-    drawText(getMeme().lines[0].txt, 350, 50, 0)
-    drawText(getMeme().lines[1].txt, 350, 500, 1)
+    drawText(getMeme().lines[0].txt, 215, 50, 0)
+    drawText(getMeme().lines[1].txt, 215, 300, 1)
   }
 
   myInput.addEventListener("input", () => {
@@ -75,6 +117,10 @@ function renderMeme(elImg) {
   gCanvas.addEventListener("mousemove", handleMouseMove)
   gCanvas.addEventListener("mouseup", handleMouseUp)
 
+  gCanvas.addEventListener("touchstart", handleTouchStart, false)
+  gCanvas.addEventListener("touchmove", handleTouchMove, false)
+  gCanvas.addEventListener("touchend", handleTouchEnd, false)
+
   // WHEN THE CANVAS CLICKED IS REMOVE THE FRAME FROM THE SELECTED TEXT LINE
   gCanvas.addEventListener("click", (event) => {
     const clickX = event.offsetX
@@ -108,6 +154,33 @@ function renderMeme(elImg) {
       redrawImg()
     }
   })
+}
+
+function handleTouchStart(event) {
+  const touch = event.touches[0]
+  const clickX = touch.pageX - gCanvas.offsetLeft
+  const clickY = touch.pageY - gCanvas.offsetTop
+
+  handleMouseDown({ offsetX: clickX, offsetY: clickY })
+}
+
+function handleTouchEnd() {
+  isDragging = false
+}
+
+function handleTouchMove(event) {
+  if (!isDragging) return
+
+  const touch = event.touches[0]
+  const newX = touch.pageX - gCanvas.offsetLeft - dragOffsetX
+  const newY = touch.pageY - gCanvas.offsetTop - dragOffsetY
+
+  getMeme().lines[getMeme().selectedLineIdx].pos.x = newX
+  getMeme().lines[getMeme().selectedLineIdx].pos.y = newY
+
+  redrawImg()
+
+  event.preventDefault()
 }
 
 function handleMouseDown(event) {
@@ -400,4 +473,53 @@ function onDownloadCanvas(elLink) {
   const dataUrl = gCanvas.toDataURL()
   elLink.href = dataUrl
   elLink.download = "my-img"
+}
+
+function onUploadImg() {
+  // Gets the image from the canvas
+  const imgDataUrl = gCanvas.toDataURL("image/jpeg")
+
+  function onSuccess(uploadedImgUrl) {
+    // Handle some special characters
+    const url = encodeURIComponent(uploadedImgUrl)
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
+  }
+
+  // Send the image to the server
+  doUploadImg(imgDataUrl, onSuccess)
+}
+
+// Upload the image to a server, get back a URL
+// call the function onSuccess when done
+function doUploadImg(imgDataUrl, onSuccess) {
+  // Pack the image for delivery
+  const formData = new FormData()
+  formData.append("img", imgDataUrl)
+
+  // Send a post req with the image to the server
+  const XHR = new XMLHttpRequest()
+  XHR.onreadystatechange = () => {
+    // If the request is not done, we have no business here yet, so return
+    if (XHR.readyState !== XMLHttpRequest.DONE) return
+    // if the response is not ok, show an error
+    if (XHR.status !== 200) return console.error("Error uploading image")
+    const { responseText: url } = XHR
+    // Same as
+    // const url = XHR.responseText
+
+    // If the response is ok, call the onSuccess callback function,
+    // that will create the link to facebook using the url we got
+    console.log("Got back live url:", url)
+    onSuccess(url)
+  }
+  XHR.onerror = (req, ev) => {
+    console.error(
+      "Error connecting to server with request:",
+      req,
+      "\nGot response data:",
+      ev
+    )
+  }
+  XHR.open("POST", "//ca-upload.com/here/upload.php")
+  XHR.send(formData)
 }
