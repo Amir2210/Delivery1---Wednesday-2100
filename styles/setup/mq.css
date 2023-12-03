@@ -80,7 +80,7 @@
 @media (max-width: 650px) {
   .main-header {
     height: 100px;
-    width: 90%;
+    width: 100%;
     margin-block-start: 0.5em;
     margin-block-end: 30px;
   }
