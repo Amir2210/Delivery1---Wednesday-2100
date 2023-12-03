@@ -90,3 +90,20 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 650px) {
+  .main-header {
+    height: 100px;
+    width: max-content;
+    margin: 20px auto;
+  }
+  .gallery .gallery-nav .filter {
+    height: 100px;
+    width: 30em; /* Use 100% width to make it responsive */
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px; /* Add padding for better spacing */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    border-radius: 8px; /* Add rounded corners */
+  }
+}
