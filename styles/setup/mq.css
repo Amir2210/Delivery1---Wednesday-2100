@@ -72,6 +72,21 @@
     width: 420px;
     height: 420px;
   }
-  .gallery .gallery-nav .filter {
+  .header-layout {
+    grid-template-columns:
+      10px
+      1fr
+      10px;
+  }
+  .main-header {
+    height: 100px;
+    width: 100%;
+    margin: 20px auto;
+  }
+  .main-header .logo {
+    /* font-size: 1.375em; */
+  }
+  .main-header .main-nav {
+    justify-content: center;
   }
 }
