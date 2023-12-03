@@ -69,9 +69,10 @@ function goGallery() {
 
   const elGallerynavRow2 = document.querySelector(".gallery-nav .nav-row2")
   elGallerynavRow2.classList.remove("hidden")
+  elGallerynavRow2.style.display = "block"
 
   const elMemeController = document.querySelector(".meme-controller")
+  elMemeController.classList.remove("flex", "space-around")
   elMemeController.classList.add("hidden")
-
   renderImgs()
 }

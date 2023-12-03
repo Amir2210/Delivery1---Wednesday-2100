@@ -20,7 +20,7 @@
 
 .meme-controller button {
   border-radius: 10px;
-  margin-inline-start: 20px;
+  /* margin-inline-start: 10px; */
   transition: border 0.5s;
 }
 
@@ -74,6 +74,7 @@
   font-size: 1.6em;
   color: #000;
   margin: 0 10px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 .meme-controller .box3 {
 }

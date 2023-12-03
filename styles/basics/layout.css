@@ -19,15 +19,15 @@
   grid-template-columns:
     125px
     1fr
-    300px;
+    125px;
 }
 
-.gallery-nav-layout {
+/* .gallery-nav-layout {
   display: grid;
   grid-template-rows: 1fr 1fr;
-}
+} */
 
-.meme-controller-layout {
+/* .meme-controller-layout {
   display: grid;
   grid-template-columns: 80px 700px 40px 1fr 80px;
-}
+} */

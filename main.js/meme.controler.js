@@ -23,6 +23,7 @@ function renderMeme(elImg) {
 
   const elMemeController = document.querySelector(".meme-controller")
   elMemeController.classList.remove("hidden")
+  elMemeController.classList.add("flex", "space-around")
 
   const elSectionImg = document.querySelector(".gallery .imges")
   elSectionImg.classList.add("hidden")
@@ -347,6 +348,10 @@ function generateRandomMeme() {
 
   const elGalleryNav = document.querySelector(".gallery-nav")
   elGalleryNav.classList.add("hidden")
+
+  const elNav = document.querySelector(".nav-row2")
+  console.log(elNav)
+  elNav.classList.add("hidden")
 
   // Reset the meme data
   resetMeme()

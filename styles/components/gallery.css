@@ -5,10 +5,18 @@
   grid-column: 2;
 }
 .gallery .image-container {
+  cursor: pointer;
   display: inline-block;
-  width: 450px;
-  height: 450px;
+  width: 350px;
+  height: 350px;
+  border-radius: 15px;
   overflow: hidden;
+  transition: all 0.5s;
+  margin: 2px;
+}
+
+.gallery .image-container:hover {
+  scale: 1.02;
 }
 
 .gallery-filter input {

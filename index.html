@@ -19,7 +19,7 @@
           <li>
             <button onclick="goGallery()">Gallery</button>
           </li>
-          <li><a href="#about">About</a></li>
+          <!-- <li><a href="#about">About</a></li> -->
         </ul>
       </nav>
     </header>
@@ -55,9 +55,9 @@
 
           <div class="nav-row2">
             <ul class="clean-list flex align-center justify-content-center">
-            <li class="more"><button>more</button></li>
+            <!-- <li class="more"><button>more</button></li> -->
             <li class="more">
-              <button onclick="generateRandomMeme()">i'm flexible</button>
+              <button onclick="generateRandomMeme()">Random img</button>
             </li>
           </ul>
           </div>
@@ -66,7 +66,7 @@
         <div class="imges "></div>
       </section>
 
-      <section class="meme-controller meme-controller-layout hidden">
+      <section class="meme-controller hidden ">
 
         <section class="canvas-contaienr">
           <canvas width="700" height="600"></canvas>
@@ -123,10 +123,10 @@
                 <option value="Arial">Arial</option>
                 <option value="Lato">Lato</option>
               </select>
-              <form id="myForm" onchange=" changeColor()">
+              <form id="myForm" oninput=" changeColor()">
                 <label for="color">color</label>
                 <input type="color" name="color" id="color" value="#ffffff" />
-                <label for="color">Stroke Color</label>
+                <label for="StrokeColor">Stroke Color</label>
                 <input type="color" name="StrokeColor" id="StrokeColor" />
               </form>
             </div>
